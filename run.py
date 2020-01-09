@@ -1,2 +1,4 @@
-from blue import app
-app.run(debug=True)
+from blue import create_app
+
+app = create_app()
+#app.run(debug=True)

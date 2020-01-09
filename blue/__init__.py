@@ -1,9 +1,17 @@
+#import os
 from flask import Flask
 
-app = Flask(__name__)
 
-from blue.api.routes import mod
-from blue.site.routes import mod
+def create_app(config=None):
+    """Create and return app."""
+    app = Flask(__name__)
+    load_blueprints(app)
+    return app
 
-app.register_blueprint(site.routes.mod)
-app.register_blueprint(api.routes.mod, url_prefix='/api')
+
+def load_blueprints():
+    from blue.api.routes import mod
+    from blue.site.routes import mod
+
+    app.register_blueprint(site.routes.mod)
+    app.register_blueprint(api.routes.mod, url_prefix='/api')
